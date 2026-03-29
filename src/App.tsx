@@ -5,7 +5,7 @@
 
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Instagram, MessageCircle, ChevronDown, MonitorPlay, Zap, ShieldCheck, Tv, Clapperboard, Sparkles, Library, Menu, X } from "lucide-react";
-import { useRef, ReactNode, useState } from "react";
+import { useRef, ReactNode, useState, useEffect } from "react";
 import { PLANS, CONTACTS } from "./constants";
 
 const Section = ({ children, id, className = "" }: { children: ReactNode; id: string; className?: string }) => {
@@ -29,6 +29,34 @@ export default function App() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.9]);
+
+  // Anti-inspection protection
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) ||
+        (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
