@@ -1,9 +1,14 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Iosevka+Charon:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Anton&family=Syne:wght@400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-aesthetic: "Playfair Display", serif;
+  --font-zdr: "Anton", sans-serif;
+  --font-play: "Anton", sans-serif;
+  --font-title: "Anton", sans-serif;
+  --font-jaro: "Jaro", sans-serif;
   
   --color-primary: #ffffff;
   --color-secondary: #000000;
@@ -19,6 +24,19 @@ body {
 
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
+}
+
+.jaro-regular {
+  font-family: "Jaro", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titan-one {
+  font-family: "Titan One", cursive !important;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Custom scrollbar */
